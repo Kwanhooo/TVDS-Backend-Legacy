@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.tvds.mapper.TvdsCarriageMapper">
+
+    <resultMap id="BaseResultMap" type="org.csu.tvds.entity.TvdsCarriage">
+        <id property="imageID" column="imageID" jdbcType="VARCHAR"/>
+        <result property="imageUrl" column="imageUrl" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="TINYINT"/>
+        <result property="inspection" column="inspection" jdbcType="INTEGER"/>
+        <result property="time" column="time" jdbcType="DATE"/>
+        <result property="seat" column="seat" jdbcType="INTEGER"/>
+        <result property="carriageNo" column="carriageNo" jdbcType="INTEGER"/>
+        <result property="model" column="model" jdbcType="VARCHAR"/>
+        <result property="carriageID" column="carriageID" jdbcType="INTEGER"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="isDeleted" column="isDeleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        imageID,imageUrl,status,
+        inspection,time,seat,
+        carriageNo,model,carriageID,
+        createTime,updateTime,isDeleted
+    </sql>
+    <select id="selectUniqueDate" resultType="java.time.LocalDate">
+        select distinct time
+        from tvds_carriage
+        order by time
+    </select>
+</mapper>
