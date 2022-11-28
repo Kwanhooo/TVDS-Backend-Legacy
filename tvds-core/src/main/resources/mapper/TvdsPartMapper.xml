@@ -11,6 +11,7 @@
         <result property="inspection" column="inspection" jdbcType="INTEGER"/>
         <result property="time" column="time" jdbcType="DATE"/>
         <result property="seat" column="seat" jdbcType="INTEGER"/>
+        <result property="carriageNo" column="carriageNo" jdbcType="INTEGER"/>
         <result property="carriageID" column="carriageID" jdbcType="INTEGER"/>
         <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
@@ -20,8 +21,8 @@
     <sql id="Base_Column_List">
         imageID,imageUrl,status,
         inspection,time,seat,
-        carriageID,createTime,updateTime,
-        isDeleted
+        carriageNo,carriageID,createTime,
+        updateTime,isDeleted
     </sql>
     <select id="selectUniqueDate" resultType="java.time.LocalDate">
         select distinct time

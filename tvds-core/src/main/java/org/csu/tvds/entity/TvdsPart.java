@@ -52,6 +52,12 @@ public class TvdsPart implements Serializable {
     /**
      *
      */
+    @TableField(value = "carriageNo")
+    private Integer carriageNo;
+
+    /**
+     *
+     */
     @TableField(value = "carriageID")
     private Integer carriageID;
 
@@ -64,7 +70,7 @@ public class TvdsPart implements Serializable {
     /**
      *
      */
-    @TableField(value = "updateTime", fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = "updateTime", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
     /**
@@ -95,6 +101,7 @@ public class TvdsPart implements Serializable {
                 && (this.getInspection() == null ? other.getInspection() == null : this.getInspection().equals(other.getInspection()))
                 && (this.getTime() == null ? other.getTime() == null : this.getTime().equals(other.getTime()))
                 && (this.getSeat() == null ? other.getSeat() == null : this.getSeat().equals(other.getSeat()))
+                && (this.getCarriageNo() == null ? other.getCarriageNo() == null : this.getCarriageNo().equals(other.getCarriageNo()))
                 && (this.getCarriageID() == null ? other.getCarriageID() == null : this.getCarriageID().equals(other.getCarriageID()))
                 && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
                 && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
@@ -111,6 +118,7 @@ public class TvdsPart implements Serializable {
         result = prime * result + ((getInspection() == null) ? 0 : getInspection().hashCode());
         result = prime * result + ((getTime() == null) ? 0 : getTime().hashCode());
         result = prime * result + ((getSeat() == null) ? 0 : getSeat().hashCode());
+        result = prime * result + ((getCarriageNo() == null) ? 0 : getCarriageNo().hashCode());
         result = prime * result + ((getCarriageID() == null) ? 0 : getCarriageID().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
@@ -130,6 +138,7 @@ public class TvdsPart implements Serializable {
         sb.append(", inspection=").append(inspection);
         sb.append(", time=").append(time);
         sb.append(", seat=").append(seat);
+        sb.append(", carriageNo=").append(carriageNo);
         sb.append(", carriageID=").append(carriageID);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);

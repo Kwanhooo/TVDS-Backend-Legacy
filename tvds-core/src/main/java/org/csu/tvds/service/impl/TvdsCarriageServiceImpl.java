@@ -259,6 +259,7 @@ public class TvdsCarriageServiceImpl extends ServiceImpl<TvdsCarriageMapper, Tvd
             part.setInspection(carriageToCrop.getInspection());
             part.setTime(carriageToCrop.getTime());
             part.setSeat(carriageToCrop.getSeat());
+            part.setCarriageNo(carriageToCrop.getCarriageNo());
             part.setCarriageID(carriageToCrop.getCarriageID());
             tvdsPartMapper.insert(part);
         });
