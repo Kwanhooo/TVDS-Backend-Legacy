@@ -168,7 +168,7 @@ public class TokenService {
      * @param token 令牌
      * @return 数据声明
      */
-    private Claims parseToken(String token) {
+    public Claims parseToken(String token) {
         return Jwts.parser()
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
@@ -200,7 +200,7 @@ public class TokenService {
         return token;
     }
 
-    private String getTokenKey(String uuid) {
+    public String getTokenKey(String uuid) {
         return CacheConstants.LOGIN_TOKEN_KEY + uuid;
     }
 }

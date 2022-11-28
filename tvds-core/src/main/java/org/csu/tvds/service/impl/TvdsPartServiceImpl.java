@@ -4,6 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoyi.common.exception.ErrorCode;
 import com.ruoyi.common.exception.ServiceException;
+import org.csu.tvds.common.PartConstant;
+import org.csu.tvds.config.PathConfig;
+import org.csu.tvds.core.DefectModel;
+import org.csu.tvds.core.abs.Input;
+import org.csu.tvds.core.abs.Output;
+import org.csu.tvds.core.io.SingleInput;
 import org.csu.tvds.dto.structure.DayNode;
 import org.csu.tvds.dto.structure.MonthNode;
 import org.csu.tvds.dto.structure.YearNode;
@@ -27,6 +33,9 @@ public class TvdsPartServiceImpl extends ServiceImpl<TvdsPartMapper, TvdsPart>
 
     @Resource
     private NumberParser numberParser;
+
+    @Resource
+    private DefectModel defectRecognize;
 
     /**
      * 生成日期树
@@ -97,6 +106,24 @@ public class TvdsPartServiceImpl extends ServiceImpl<TvdsPartMapper, TvdsPart>
     @Override
     public List<TvdsPart> getAllImages() {
         return this.list();
+    }
+
+    @Override
+    public TvdsPart detect(String imageID) {
+        // TODO: valid imageID
+        TvdsPart part = this.getById(imageID);
+        Input<String> inputImage = new SingleInput<>(PathConfig.BASE + part.getImageUrl());
+        Output<Boolean> output = defectRecognize.dispatch(inputImage);
+        if (!output.isSucceed()) {
+            throw new ServiceException(ErrorCode.MODEL_RUN_ERROR);
+        }
+        if (output.getOutput()) {
+            part.setStatus(PartConstant.DEFECT);
+        } else {
+            part.setStatus(PartConstant.NORMAL);
+        }
+        this.updateById(part);
+        return part;
     }
 }
 

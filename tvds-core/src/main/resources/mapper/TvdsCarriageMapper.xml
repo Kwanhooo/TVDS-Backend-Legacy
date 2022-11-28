@@ -6,7 +6,8 @@
 
     <resultMap id="BaseResultMap" type="org.csu.tvds.entity.TvdsCarriage">
         <id property="imageID" column="imageID" jdbcType="VARCHAR"/>
-        <result property="imageUrl" column="imageUrl" jdbcType="VARCHAR"/>
+        <result property="originUrl" column="originUrl" jdbcType="VARCHAR"/>
+        <result property="alignedUrl" column="alignedUrl" jdbcType="VARCHAR"/>
         <result property="status" column="status" jdbcType="TINYINT"/>
         <result property="inspection" column="inspection" jdbcType="INTEGER"/>
         <result property="time" column="time" jdbcType="DATE"/>
@@ -20,10 +21,11 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        imageID,imageUrl,status,
-        inspection,time,seat,
-        carriageNo,model,carriageID,
-        createTime,updateTime,isDeleted
+        imageID,originUrl,alignedUrl,
+        status,inspection,time,
+        seat,carriageNo,model,
+        carriageID,createTime,updateTime,
+        isDeleted
     </sql>
     <select id="selectUniqueDate" resultType="java.time.LocalDate">
         select distinct time

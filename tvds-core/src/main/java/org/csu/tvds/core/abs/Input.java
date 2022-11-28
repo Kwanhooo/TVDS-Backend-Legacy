@@ -6,4 +6,8 @@ public abstract class Input<T> {
     public abstract T getInput();
 
     public abstract void setInput(T data);
+
+    public Input(T data) {
+        this.data = data;
+    }
 }

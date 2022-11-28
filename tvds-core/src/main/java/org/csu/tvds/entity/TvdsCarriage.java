@@ -22,8 +22,14 @@ public class TvdsCarriage implements Serializable {
     /**
      *
      */
-    @TableField(value = "imageUrl")
-    private String imageUrl;
+    @TableField(value = "originUrl")
+    private String originUrl;
+
+    /**
+     *
+     */
+    @TableField(value = "alignedUrl")
+    private String alignedUrl;
 
     /**
      *
@@ -102,7 +108,8 @@ public class TvdsCarriage implements Serializable {
         }
         TvdsCarriage other = (TvdsCarriage) that;
         return (this.getImageID() == null ? other.getImageID() == null : this.getImageID().equals(other.getImageID()))
-                && (this.getImageUrl() == null ? other.getImageUrl() == null : this.getImageUrl().equals(other.getImageUrl()))
+                && (this.getOriginUrl() == null ? other.getOriginUrl() == null : this.getOriginUrl().equals(other.getOriginUrl()))
+                && (this.getAlignedUrl() == null ? other.getAlignedUrl() == null : this.getAlignedUrl().equals(other.getAlignedUrl()))
                 && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
                 && (this.getInspection() == null ? other.getInspection() == null : this.getInspection().equals(other.getInspection()))
                 && (this.getTime() == null ? other.getTime() == null : this.getTime().equals(other.getTime()))
@@ -120,7 +127,8 @@ public class TvdsCarriage implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getImageID() == null) ? 0 : getImageID().hashCode());
-        result = prime * result + ((getImageUrl() == null) ? 0 : getImageUrl().hashCode());
+        result = prime * result + ((getOriginUrl() == null) ? 0 : getOriginUrl().hashCode());
+        result = prime * result + ((getAlignedUrl() == null) ? 0 : getAlignedUrl().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getInspection() == null) ? 0 : getInspection().hashCode());
         result = prime * result + ((getTime() == null) ? 0 : getTime().hashCode());
@@ -141,7 +149,8 @@ public class TvdsCarriage implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", imageID=").append(imageID);
-        sb.append(", imageUrl=").append(imageUrl);
+        sb.append(", originUrl=").append(originUrl);
+        sb.append(", alignedUrl=").append(alignedUrl);
         sb.append(", status=").append(status);
         sb.append(", inspection=").append(inspection);
         sb.append(", time=").append(time);

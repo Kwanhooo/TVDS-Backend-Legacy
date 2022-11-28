@@ -36,4 +36,8 @@ public class PartController extends BaseController {
         return success(tvdsPartService.getImagesByDateList(dates));
     }
 
+    @RequestMapping("/detect")
+    public AjaxResult detect(String imageID) {
+        return success(tvdsPartService.detect(imageID));
+    }
 }

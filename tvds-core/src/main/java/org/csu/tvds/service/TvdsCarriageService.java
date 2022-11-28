@@ -19,5 +19,11 @@ public interface TvdsCarriageService extends IService<TvdsCarriage> {
 
     List<TvdsCarriage> getImagesByDateList(List<String> dateList);
 
-    String upload(MultipartFile file);
+    TvdsCarriage upload(MultipartFile file);
+
+    TvdsCarriage ocr(String imageID);
+
+    TvdsCarriage align(String imageID);
+
+    TvdsCarriage crop(String imageID);
 }

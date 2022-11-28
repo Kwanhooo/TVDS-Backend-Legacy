@@ -35,4 +35,19 @@ public class CarriageController extends BaseController {
     public AjaxResult getImagesByDateList(@RequestBody List<String> dates) {
         return success(tvdsCarriageService.getImagesByDateList(dates));
     }
+
+    @RequestMapping("/ocr")
+    public AjaxResult ocr(String imageID) {
+        return success(tvdsCarriageService.ocr(imageID));
+    }
+
+    @RequestMapping("/align")
+    public AjaxResult align(String imageID) {
+        return success(tvdsCarriageService.align(imageID));
+    }
+
+    @RequestMapping("/crop")
+    public AjaxResult crop(String imageID) {
+        return success(tvdsCarriageService.crop(imageID));
+    }
 }

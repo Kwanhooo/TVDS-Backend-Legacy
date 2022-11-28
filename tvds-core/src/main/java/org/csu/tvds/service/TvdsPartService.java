@@ -17,4 +17,6 @@ public interface TvdsPartService extends IService<TvdsPart> {
     List<TvdsPart> getImagesByDateList(List<String> dateList);
 
     List<TvdsPart> getAllImages();
+
+    TvdsPart detect(String imageID);
 }

@@ -15,7 +15,11 @@ public enum ErrorCode {
     SYSTEM_ERROR(50000, "系统内部异常"),
     SAVE_ERROR(50010, "新增失败"),
     UPDATE_ERROR(50020, "更新失败"),
-    DELETE_ERROR(50030, "删除失败");
+    DELETE_ERROR(50030, "删除失败"),
+    MODEL_RUN_ERROR(60010, "模型运行时错误"),
+    MODEL_RESULT_INVALID(60020, "模型结果无效"),
+    FILE_UPLOAD_ERROR(60020, "文件上传错误"),
+    WORKFLOW_ERROR(60030, "工作流错误");
 
     private final int code;
 
