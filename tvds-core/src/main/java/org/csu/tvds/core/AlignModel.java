@@ -17,16 +17,18 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import static org.csu.tvds.config.PathConfig.AI_BASE;
 import static org.csu.tvds.config.RuntimeConfig.TENSORFLOW_ENV;
 
 @CoreModel(env = TENSORFLOW_ENV)
 @Component
 public class AlignModel extends ModelDispatcher<String, Boolean> {
     private static final String OUTPUT_PATH = PathConfig.ALIGNED_BASE;
+    private static final String TEMPLATE_PATH = AI_BASE + "tvds-registration/images/template/X70/template.jpg";
 
     {
-        modelPath = "/home/kwanho/Workspace/Workspace-TVDS/TVDS-AI/tvds-registration/image_registration.py";
-        template = new Template(TENSORFLOW_ENV + " " + modelPath + " {0} {1}");
+        modelPath = AI_BASE + "tvds-registration/image_registration.py";
+        template = new Template(TENSORFLOW_ENV + " " + modelPath + " {0} {1} {2}");
     }
 
     @Override
@@ -45,7 +47,7 @@ public class AlignModel extends ModelDispatcher<String, Boolean> {
             return output;
         }
         try {
-            template.setValues(new String[]{imagePath, OUTPUT_PATH});
+            template.setValues(new String[]{imagePath, OUTPUT_PATH, TEMPLATE_PATH});
             System.out.println(template.resolve());
             Process proc = Runtime.getRuntime().exec(template.resolve());
             InputStream inputStream = proc.getInputStream();

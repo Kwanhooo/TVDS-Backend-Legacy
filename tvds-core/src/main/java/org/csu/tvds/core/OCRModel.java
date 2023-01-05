@@ -16,12 +16,15 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import static org.csu.tvds.config.PathConfig.AI_BASE;
+
+
 @CoreModel(env = RuntimeConfig.TENSORFLOW_ENV)
 @Component
 public class OCRModel extends ModelDispatcher<String, String> {
 
     {
-        modelPath = "/home/kwanho/Workspace/Workspace-TVDS/TVDS-AI/tvds-ocr/utils.py";
+        modelPath = AI_BASE + "tvds-ocr/utils.py";
         template = new Template(RuntimeConfig.TENSORFLOW_ENV + " " + modelPath + " {0}");
     }
 

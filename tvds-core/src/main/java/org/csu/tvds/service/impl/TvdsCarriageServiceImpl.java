@@ -196,6 +196,7 @@ public class TvdsCarriageServiceImpl extends ServiceImpl<TvdsCarriageMapper, Tvd
             throw new ServiceException(ErrorCode.MODEL_RUN_ERROR);
         }
         String result = output.getOutput();
+        System.out.println("result" +result);
         String model = result.split("_")[4];
         String carriageID = result.split("_")[5];
         carriageToOcr.setStatus(CarriageConstant.OCR_OK);

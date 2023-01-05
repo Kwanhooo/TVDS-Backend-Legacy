@@ -18,16 +18,17 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import static org.csu.tvds.config.PathConfig.AI_BASE;
 import static org.csu.tvds.config.RuntimeConfig.TENSORFLOW_ENV;
 
 @CoreModel(env = RuntimeConfig.TENSORFLOW_ENV)
 @Component
 public class CropModel extends ModelDispatcher<String, Boolean> {
     private static final String OUTPUT_PATH = PathConfig.PARTS_BASE;
-    private static final String jsonPath = "/home/kwanho/Workspace/Workspace-TVDS/TVDS-AI/tvds-registration/images/template/X70/part_index.json";
+    private static final String jsonPath = AI_BASE + "tvds-registration/images/template/X70/part_index.json";
 
     {
-        modelPath = "/home/kwanho/Workspace/Workspace-TVDS/TVDS-AI/tvds-registration/utils.py";
+        modelPath = AI_BASE + "tvds-registration/utils.py";
         template = new Template(TENSORFLOW_ENV + " " + modelPath + " {0} {1} {2}");
     }
 
