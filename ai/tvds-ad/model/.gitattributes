@@ -1,0 +1,2 @@
+bearing.tch filter=lfs diff=lfs merge=lfs -text
+spring.tch filter=lfs diff=lfs merge=lfs -text

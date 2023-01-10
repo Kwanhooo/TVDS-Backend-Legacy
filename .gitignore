@@ -46,7 +46,6 @@ nbdist/
 !*/build/*.html
 !*/build/*.xml
 
-
-blob
-
-*.tch
+# TVDS Project
+/blob/
+!/ai/

@@ -51,7 +51,7 @@ public class CarriageController extends BaseController {
         try {
             ocrResult = tvdsCarriageService.ocr(imageID);
         } catch (Exception e) {
-            return error("OCR识别失败");
+            return error("OCR未能识别出结果");
         }
         return success(ocrResult);
     }
