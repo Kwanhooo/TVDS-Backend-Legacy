@@ -26,4 +26,6 @@ public interface TvdsCarriageService extends IService<TvdsCarriage> {
     TvdsCarriage align(String imageID);
 
     TvdsCarriage crop(String imageID);
+
+    TvdsCarriage marking(String imageID);
 }

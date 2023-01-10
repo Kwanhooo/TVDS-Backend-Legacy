@@ -13,6 +13,7 @@ import org.csu.tvds.core.CropModel;
 import org.csu.tvds.core.OCRModel;
 import org.csu.tvds.core.abs.Input;
 import org.csu.tvds.core.abs.Output;
+import org.csu.tvds.core.io.MarkingModel;
 import org.csu.tvds.core.io.SingleInput;
 import org.csu.tvds.dto.structure.DayNode;
 import org.csu.tvds.dto.structure.MonthNode;
@@ -53,6 +54,9 @@ public class TvdsCarriageServiceImpl extends ServiceImpl<TvdsCarriageMapper, Tvd
 
     @Resource
     private AlignModel imageRegistration;
+
+    @Resource
+    private MarkingModel markingModel;
 
     @Resource
     private CropModel cropModel;
@@ -196,7 +200,7 @@ public class TvdsCarriageServiceImpl extends ServiceImpl<TvdsCarriageMapper, Tvd
             throw new ServiceException(ErrorCode.MODEL_RUN_ERROR);
         }
         String result = output.getOutput();
-        System.out.println("result" +result);
+        System.out.println("result" + result);
         String model = result.split("_")[4];
         String carriageID = result.split("_")[5];
         carriageToOcr.setStatus(CarriageConstant.OCR_OK);
@@ -267,6 +271,25 @@ public class TvdsCarriageServiceImpl extends ServiceImpl<TvdsCarriageMapper, Tvd
         carriageToCrop.setStatus(CarriageConstant.CROP_OK);
         this.updateById(carriageToCrop);
         return carriageToCrop;
+    }
+
+    @Override
+    public TvdsCarriage marking(String imageID) {
+        TvdsCarriage carriageToMarking = this.getOne(new QueryWrapper<TvdsCarriage>().eq("imageID", imageID));
+        if (carriageToMarking == null) {
+            throw new ServiceException(ErrorCode.PARAMS_ERROR);
+        }
+        String imageUrl = carriageToMarking.getAlignedUrl();
+        Input<String> inputPath = new SingleInput<>(BASE + imageUrl);
+        Output<Boolean> output = markingModel.dispatch(inputPath);
+        if (!output.isSucceed()) {
+            throw new ServiceException(ErrorCode.MODEL_RUN_ERROR);
+        }
+        Boolean result = output.getOutput();
+        if (!result) {
+            throw new ServiceException("标注失败", ErrorCode.MODEL_RESULT_INVALID.getCode());
+        }
+        return carriageToMarking;
     }
 }
 

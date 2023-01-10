@@ -61,6 +61,11 @@ public class CarriageController extends BaseController {
         return success(tvdsCarriageService.align(imageID));
     }
 
+    @RequestMapping("/marking")
+    public AjaxResult marking(String imageID) {
+        return success(tvdsCarriageService.marking(imageID));
+    }
+
     @RequestMapping("/crop")
     public AjaxResult crop(String imageID) {
         return success(tvdsCarriageService.crop(imageID));
@@ -69,6 +74,6 @@ public class CarriageController extends BaseController {
     @Scheduled(cron = "*/5 * * * * ?")
     public void execute() {
         redisTemplate.opsForValue().set("heartbeat", "HEARTBEAT");
-        System.out.println(redisTemplate.opsForValue().get("heartbeat"));
+//        System.out.println(redisTemplate.opsForValue().get("heartbeat"));
     }
 }
