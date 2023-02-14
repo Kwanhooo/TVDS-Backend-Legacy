@@ -14,6 +14,8 @@ import java.util.List;
 public interface TvdsCarriageMapper extends BaseMapper<TvdsCarriage> {
 
     List<LocalDate> selectUniqueDate();
+    Integer selectUniqueInspectionCount();
+    List<Integer> selectUniqueInspection();
 }
 
 

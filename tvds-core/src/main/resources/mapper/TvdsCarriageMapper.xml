@@ -32,4 +32,17 @@
         from tvds_carriage
         order by time
     </select>
+
+    <select id="selectUniqueInspectionCount" resultType="java.lang.Integer">
+        select count(distinct inspection)
+        from tvds_carriage
+        order by inspection
+    </select>
+
+
+    <select id="selectUniqueInspection" resultType="java.lang.Integer">
+        select distinct inspection
+        from tvds_carriage
+        order by inspection
+    </select>
 </mapper>

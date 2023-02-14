@@ -29,4 +29,22 @@
         from tvds_part
         order by time
     </select>
+
+    <select id="selectUniqueDetectedInspection" resultType="java.lang.Integer">
+        select distinct inspection
+        from tvds_part
+        where status = 2
+           or status = 3
+        order by inspection
+    </select>
+    <select id="selectUniqueDefectInspectionCount" resultType="java.lang.Integer">
+        select count(distinct inspection)
+        from tvds_part
+        where status = 3
+    </select>
+    <select id="selectUniqueDefectCount" resultType="java.lang.Integer">
+        select count(*)
+        from tvds_part
+        where status = 3
+    </select>
 </mapper>

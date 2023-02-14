@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoyi.common.exception.ErrorCode;
 import com.ruoyi.common.exception.ServiceException;
+import lombok.SneakyThrows;
 import org.csu.tvds.common.PartConstant;
 import org.csu.tvds.config.PathConfig;
 import org.csu.tvds.core.DefectModel;
@@ -13,6 +14,7 @@ import org.csu.tvds.core.io.SingleInput;
 import org.csu.tvds.dto.structure.DayNode;
 import org.csu.tvds.dto.structure.MonthNode;
 import org.csu.tvds.dto.structure.YearNode;
+import org.csu.tvds.dto.vo.MissionStatsVO;
 import org.csu.tvds.entity.TvdsPart;
 import org.csu.tvds.mapper.TvdsPartMapper;
 import org.csu.tvds.service.TvdsPartService;
@@ -23,6 +25,8 @@ import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.csu.tvds.common.MissionCache.missions;
 
 /**
  * @author kwanho
@@ -108,10 +112,13 @@ public class TvdsPartServiceImpl extends ServiceImpl<TvdsPartMapper, TvdsPart>
         return this.list();
     }
 
+    @SneakyThrows
     @Override
     public TvdsPart detect(String imageID) {
         // TODO: valid imageID
         TvdsPart part = this.getById(imageID);
+        MissionStatsVO mission = new MissionStatsVO(1, part.getInspection(), part.getCarriageNo());
+        missions.add(mission);
         Input<String> inputImage = new SingleInput<>(PathConfig.BASE + part.getImageUrl());
         Output<Boolean> output = defectRecognize.dispatch(inputImage);
         if (!output.isSucceed()) {
@@ -122,7 +129,9 @@ public class TvdsPartServiceImpl extends ServiceImpl<TvdsPartMapper, TvdsPart>
         } else {
             part.setStatus(PartConstant.NORMAL);
         }
+        Thread.sleep(10000);
         this.updateById(part);
+        missions.remove(mission);
         return part;
     }
 }

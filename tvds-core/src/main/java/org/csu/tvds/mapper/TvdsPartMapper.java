@@ -14,6 +14,11 @@ import java.util.List;
  */
 public interface TvdsPartMapper extends BaseMapper<TvdsPart> {
     List<LocalDate> selectUniqueDate();
+
+    List<Integer> selectUniqueDetectedInspection();
+
+    Integer selectUniqueDefectInspectionCount();
+    Integer selectUniqueDefectCount();
 }
 
 

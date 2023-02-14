@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.tvds.mapper.TbOriginImageMapper">
+
+    <resultMap id="BaseResultMap" type="org.csu.tvds.entity.TbOriginImage">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="filename" column="filename" jdbcType="VARCHAR"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="inspectionSeqDay" column="inspectionSeqDay" jdbcType="INTEGER"/>
+            <result property="localUrl" column="localUrl" jdbcType="VARCHAR"/>
+            <result property="cameraNumber" column="cameraNumber" jdbcType="INTEGER"/>
+            <result property="carriageNumber" column="carriageNumber" jdbcType="INTEGER"/>
+            <result property="contentType" column="contentType" jdbcType="VARCHAR"/>
+            <result property="relatedId" column="relatedId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,filename,createTime,
+        inspectionSeqDay,localUrl,cameraNumber,
+        carriageNumber,contentType,relatedId
+    </sql>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.tvds.mapper.TbPartInfoMapper">
+
+    <resultMap id="BaseResultMap" type="org.csu.tvds.entity.TbPartInfo">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="partName" column="partName" jdbcType="VARCHAR"/>
+            <result property="model" column="model" jdbcType="VARCHAR"/>
+            <result property="compositeId" column="compositeId" jdbcType="VARCHAR"/>
+            <result property="imageUrl" column="imageUrl" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="checkTime" column="checkTime" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,partName,model,
+        compositeId,imageUrl,status,
+        checkTime,createTime
+    </sql>
+</mapper>
